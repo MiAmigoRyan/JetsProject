@@ -1,0 +1,5 @@
+Passenger,Boeing777,10000,10000,499999
+Fighter,Bad Jet,100,10,100000000
+UFO,Spinny disk of the sky,1234,4321,9999
+Squirel Suit,Adrenline Junkie,100,5,100
+Helicopter,chopper,567,89,98
