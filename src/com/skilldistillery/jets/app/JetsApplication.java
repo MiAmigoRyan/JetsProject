@@ -4,13 +4,16 @@ import java.util.Scanner;
 
 import com.skilldistillery.jets.entities.AirField;
 import com.skilldistillery.jets.entities.CargoCarrier;
+import com.skilldistillery.jets.entities.CargoPlane;
+import com.skilldistillery.jets.entities.CombatReady;
+import com.skilldistillery.jets.entities.FighterJet;
 import com.skilldistillery.jets.entities.Jet;
 import com.skilldistillery.jets.entities.JetImpl;
 
 public class JetsApplication {
-	
+
 	private AirField af = new AirField();
-		
+
 	private Scanner sc = new Scanner(System.in);
 
 	public static void main(String[] args) {
@@ -84,7 +87,7 @@ public class JetsApplication {
 	public void flyAll() {
 		for (Jet jet : af.getFleet()) {
 			jet.fly();
-			
+
 		}
 	}
 
@@ -119,25 +122,25 @@ public class JetsApplication {
 		// present option specific to CargoCarrier Interface
 		// find all implementations of cargoCarrier
 		// call loadCargo() on each
-		//instance of
-	for(Jet jet : af.getFleet()) {
-		if(jet instanceof CargoCarrier) {
-			((CargoCarrier)jet).loadCargo();
-	}
-	}
-		
+		// instance of
+		for (Jet jet : af.getFleet()) {
+			if (jet instanceof CargoPlane) {
+				((CargoCarrier) jet).loadCargo();
+			}
+		}
+
 	}
 
 	public void dogfight() {
-		for(Jet jet : af.getFleet()) {
-			if(jet instanceof CombatReady) {
-				((CombatReady)jet).fight();
+		for (Jet jet : af.getFleet()) {
+			if (jet instanceof FighterJet) {
+				((CombatReady) jet).fight();
+			}
 		}
-		}
-				}
+	}
 
 	public void addJet() {
-		// print current list : listFleet();		
+		// print current list : listFleet();
 		// can be a JetImpl (passenger)
 		// STRETCH GOAL : Sub Menu initate to choose type of jet (Cargo, Combat, Impl)
 
@@ -148,7 +151,7 @@ public class JetsApplication {
 		String type = sc.next();
 //			switch
 //			case
-		
+
 		System.out.println("Enter the Model of the Jet you would like to add");
 		String model = sc.next();
 
@@ -157,41 +160,41 @@ public class JetsApplication {
 
 		System.out.println("Enter the Range");
 		int range = sc.nextInt();
-	
+
 		System.out.println("Enter the Price");
 		long price = sc.nextLong();
-		
+
 		Jet newJet = new JetImpl(model, speed, range, price);
 
 		af.getFleet().add(newJet);
-		
+
 	}
 
 	public void removeJet() {
 		// print current list as a submenu;
 		// prompt user to choose a jet to delete by number
 		listFleet();
-	    
-		System.out.println("Enter the number of the jet you want to remove:");
-	   
-	    int jetIndex = sc.nextInt();
 
-	    // Remove the jet from the fleet if it exists
-	    if (jetIndex >= 1 && jetIndex <= af.getFleet().size()) {
-	    
-	    	Jet removedJet = af.getFleet().remove(jetIndex - 1);
-	        System.out.println( "Jet: " +removedJet.getJetId() +" "+ removedJet.getModel()+ " has been removed from the fleet.");
+		System.out.println("Enter the number of the jet you want to remove:");
+
+		int jetIndex = sc.nextInt();
+
+		// Remove the jet from the fleet if it exists
+		if (jetIndex >= 1 && jetIndex <= af.getFleet().size()) {
+
+			Jet removedJet = af.getFleet().remove(jetIndex - 1);
+			System.out.println("Jet: " + removedJet.getJetId() + " " + removedJet.getModel()
+					+ " has been removed from the fleet.");
 //bonus: print updated list of fleet
 //	        System.out.println("Would you like to see an updated list of the fleet? Enter Y or N ");	
 //	        String anwsr = sc.next();
 //	        	continue code
-	        
-	    } else {
-	     
-	    	System.out.println("Invalid jet number. Returning to Main Menu.");
-	    }
+
+		} else {
+
+			System.out.println("Invalid jet number. Returning to Main Menu.");
+		}
 	}
-	
 
 	public void exit() {
 		System.out.println("GoodBye!");

@@ -22,7 +22,9 @@ public class FighterJet extends Jet implements CombatReady{
 
 	@Override
 	public void fight() {
-		System.out.println("pewpew");		
+		System.out.println();
+		System.out.println("pewpew");
+		System.out.println();
 	}
 
 	
