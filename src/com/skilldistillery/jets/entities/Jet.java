@@ -10,11 +10,9 @@ public abstract class Jet {
 
 	
 	public void fly() {
-		// print details of jet
-		System.out.println(toString());
-		// amount of time a jet can fly
 		double timeFly = range / speed;
 		System.out.println("this jet can fly " + timeFly + " hours");
+		System.out.println(toString());
 		System.out.println();
 	}
 
@@ -36,6 +34,10 @@ public abstract class Jet {
 	}
 
 	// Getters and Setters
+	public int getJetId() {
+		return jetId;
+	}
+	
 	public String getModel() {
 		return model;
 	}

@@ -1,6 +1,6 @@
 package com.skilldistillery.jets.entities;
 
-public class UFO extends Jet {
+public class UFO extends Jet implements CombatReady{
 
 	public UFO(String model, double speed, int range, long price) {
 		super(model, speed, range, price);
@@ -19,6 +19,12 @@ public class UFO extends Jet {
 	public void abduct() {
 		System.out.println("Take me to your leader");
 
+	}
+
+	@Override
+	public void fight() {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

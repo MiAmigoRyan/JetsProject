@@ -3,7 +3,9 @@ package com.skilldistillery.jets.app;
 import java.util.Scanner;
 
 import com.skilldistillery.jets.entities.AirField;
+import com.skilldistillery.jets.entities.CargoCarrier;
 import com.skilldistillery.jets.entities.Jet;
+import com.skilldistillery.jets.entities.JetImpl;
 
 public class JetsApplication {
 	
@@ -117,25 +119,35 @@ public class JetsApplication {
 		// present option specific to CargoCarrier Interface
 		// find all implementations of cargoCarrier
 		// call loadCargo() on each
+		//instance of
+	for(Jet jet : af.getFleet()) {
+		if(jet instanceof CargoCarrier) {
+			((CargoCarrier)jet).loadCargo();
+	}
+	}
+		
 	}
 
 	public void dogfight() {
-		// same as above loadCargoJets method but interface CombatReady
-	}
+		for(Jet jet : af.getFleet()) {
+			if(jet instanceof CombatReady) {
+				((CombatReady)jet).fight();
+		}
+		}
+				}
 
 	public void addJet() {
-		// print current list : listFleet();
+		// print current list : listFleet();		
 		// can be a JetImpl (passenger)
 		// STRETCH GOAL : Sub Menu initate to choose type of jet (Cargo, Combat, Impl)
-		// this process will be similar to foodtruck app
-		// ask user to enter model, speed, range, and price
-		// add new jet to jets.txt and list<Jet>
-		// fleet.add
+
 		System.out.println("ADD A NEW JET");
 		System.out.println();
 
 		System.out.println("Enter a type of jet");
 		String type = sc.next();
+//			switch
+//			case
 		
 		System.out.println("Enter the Model of the Jet you would like to add");
 		String model = sc.next();
@@ -149,16 +161,37 @@ public class JetsApplication {
 		System.out.println("Enter the Price");
 		long price = sc.nextLong();
 		
-		Jet newJet = new Jet(type, model, speed, range, price);
+		Jet newJet = new JetImpl(model, speed, range, price);
+
+		af.getFleet().add(newJet);
 		
-		
-		// Jet newJet = new Jet (model, speed, range, price);
 	}
 
 	public void removeJet() {
 		// print current list as a submenu;
-		// prompt user to choose a jet to delte by number
+		// prompt user to choose a jet to delete by number
+		listFleet();
+	    
+		System.out.println("Enter the number of the jet you want to remove:");
+	   
+	    int jetIndex = sc.nextInt();
+
+	    // Remove the jet from the fleet if it exists
+	    if (jetIndex >= 1 && jetIndex <= af.getFleet().size()) {
+	    
+	    	Jet removedJet = af.getFleet().remove(jetIndex - 1);
+	        System.out.println( "Jet: " +removedJet.getJetId() +" "+ removedJet.getModel()+ " has been removed from the fleet.");
+//bonus: print updated list of fleet
+//	        System.out.println("Would you like to see an updated list of the fleet? Enter Y or N ");	
+//	        String anwsr = sc.next();
+//	        	continue code
+	        
+	    } else {
+	     
+	    	System.out.println("Invalid jet number. Returning to Main Menu.");
+	    }
 	}
+	
 
 	public void exit() {
 		System.out.println("GoodBye!");
