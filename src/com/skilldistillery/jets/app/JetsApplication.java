@@ -89,13 +89,36 @@ public class JetsApplication {
 		// prints ammount of time a jet can fly
 		// equation based on speed and range
 	}
-
+	
+	
+	//NEEDS TO BE TESTED***********************************
 	public void fastest() {
 		// search the list<Jets> to find fastest
+		Jet fastest = null;
+		double nextSpeed = 0;
+		for(int jet = 0; jet < fleet.length; jet++) {
+			if(fleet[jet] !=null) {
+				if(fleet[jet].getSpeed()>nextSpeed) {
+					nextSpeed = fleet[jet].getSpeed();
+					fastest = fleet[jet];
+				}
+			}
+		}
 	}
 
+	//NEEDS TO BE TESTED***********************************
 	public void longestRange() {
 		// search list<Jets> to find longest range
+		Jet longestRange = null;
+		int nextRange =0;
+		for (int jet=0; jet<fleet.length; jet++) {
+			if(fleet[jet] !=null) {
+				if(fleet[jet].getRange()>nextRange) {
+					nextRange = fleet[jet].getRange();
+					longestRange = fleet[jet];
+					}
+			}
+		}
 	}
 
 	public void loadCargoJets() {
