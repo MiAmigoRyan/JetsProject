@@ -18,10 +18,11 @@ public class AirField {
 
 				String[] jetDetails = aJet.split(",");
 
-				String model = jetDetails[0];
-				double speed = Double.parseDouble(jetDetails[1]);
-				int range = Integer.parseInt(jetDetails[2]);
-				long price = Long.parseLong(jetDetails[3]);
+				String type = jetDetails[0];
+				String model = jetDetails[1];
+				double speed = Double.parseDouble(jetDetails[2]);
+				int range = Integer.parseInt(jetDetails[3]);
+				long price = Long.parseLong(jetDetails[4]);
 
 				if (model.equals("Passenger")) {
 					newJet = new JetImpl(model, speed, range, price);
@@ -40,6 +41,7 @@ public class AirField {
 				}
 
 				fleet.add(newJet);
+				
 				System.out.println(fleet);
 			}
 		} catch (IOException e) {

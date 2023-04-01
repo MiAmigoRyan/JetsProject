@@ -5,7 +5,11 @@ public abstract class Jet  {
 	private double speed;
 	private int range;
 	private long price;
-
+	private int jetId;
+	private static int jetCounter;
+	
+	
+	
 	public void fly() {
 
 	}
@@ -16,7 +20,19 @@ public Jet(String model, double speed, int range, long price) {
 		this.speed = speed;
 		this.range = range;
 		this.price = price;
+		
+		jetCounter++;
+		jetId = jetCounter;
 	}
+
+
+
+
+	@Override
+public String toString() {
+	return "Jet [model=" + model + ", speed=" + speed + ", range=" + range + ", price=" + price + ", jetId=" + jetId
+			+ "]";
+}
 
 	//Getters and Setters
 	public String getModel() {

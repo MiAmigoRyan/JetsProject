@@ -6,4 +6,8 @@ public class Squirel extends Jet {
 		super(model, speed, range, price);
 	}
 
+	 public void baseJump() {
+		 System.out.println("aaahhhahhah");
+		 
+	 }
 }
