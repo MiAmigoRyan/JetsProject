@@ -1,40 +1,41 @@
 package com.skilldistillery.jets.entities;
 
-public abstract class Jet  {
+public abstract class Jet {
 	private String model;
 	private double speed;
 	private int range;
 	private long price;
 	private int jetId;
 	private static int jetCounter;
-	
-	
+
 	
 	public void fly() {
-
+		// print details of jet
+		System.out.println(toString());
+		// amount of time a jet can fly
+		double timeFly = range / speed;
+		System.out.println("this jet can fly " + timeFly + " hours");
+		System.out.println();
 	}
-	
-public Jet(String model, double speed, int range, long price) {
+
+	public Jet(String model, double speed, int range, long price) {
 		super();
 		this.model = model;
 		this.speed = speed;
 		this.range = range;
 		this.price = price;
-		
+
 		jetCounter++;
 		jetId = jetCounter;
 	}
 
-
-
-
 	@Override
-public String toString() {
-	return "Jet [model=" + model + ", speed=" + speed + ", range=" + range + ", price=" + price + ", jetId=" + jetId
-			+ "]";
-}
+	public String toString() {
+		return "Jet ID " + jetId + "\n Model:" + model + "\n Speed:" + speed + "MPH " + "\n Range:" + range + " miles "
+				+ "\n Price:" + price;
+	}
 
-	//Getters and Setters
+	// Getters and Setters
 	public String getModel() {
 		return model;
 	}

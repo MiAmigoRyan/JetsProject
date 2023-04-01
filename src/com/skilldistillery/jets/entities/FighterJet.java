@@ -1,6 +1,6 @@
 package com.skilldistillery.jets.entities;
 
-public class FighterJet extends Jet{
+public class FighterJet extends Jet implements CombatReady{
 
 	
 
@@ -8,10 +8,23 @@ public class FighterJet extends Jet{
 		super(model, speed, range, price);
 	
 	}
-	public void fight() {
-		System.out.println("pew pew pew");
-		
+	
+	@Override
+	public void fly() {
+		super.fly();
 	}
+
+
+	@Override
+	public String toString() {
+		return super.toString();
+	}
+
+	@Override
+	public void fight() {
+		System.out.println("pewpew");		
+	}
+
 	
 	
 	

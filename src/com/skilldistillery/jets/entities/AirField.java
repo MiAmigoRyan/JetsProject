@@ -8,46 +8,61 @@ import java.util.List;
 
 public class AirField {
 	private List<Jet> fleet;
-
+	
+	public AirField() { 
+		readFromFile();
+	}
+	
 	public List<Jet> readFromFile() {
+		
+		
 		fleet = new ArrayList<>();
+		
 		Jet newJet = null;
+		
 		try (BufferedReader bufIn = new BufferedReader(new FileReader("jets.txt"))) {
 			String aJet;
 			while ((aJet = bufIn.readLine()) != null) {
 
 				String[] jetDetails = aJet.split(",");
 
-				String type = jetDetails[0];
+				String type = jetDetails[0];  
+				
 				String model = jetDetails[1];
 				double speed = Double.parseDouble(jetDetails[2]);
 				int range = Integer.parseInt(jetDetails[3]);
 				long price = Long.parseLong(jetDetails[4]);
 
-				if (model.equals("Passenger")) {
+				if (type.equals("Passenger")) {
 					newJet = new JetImpl(model, speed, range, price);
 				}
-				if (model.equals("Fighter")) {
+				if (type.equals("Fighter")) {
 					newJet = new FighterJet(model, speed, range, price);
 				}
-				if (model.equals("UFO")) {
+				if (type.equals("UFO")) {
 					newJet = new UFO(model, speed, range, price);
 				}
-				if (model.equals("Squirel Suit")) {
+				if (type.equals("Squirel Suit")) {
 					newJet = new Squirel(model, speed, range, price);
 				}
-				if (model.equals("Helicopter")) {
+				if (type.equals("Helicopter")) {
 					newJet = new Helicopter(model, speed, range, price);
 				}
-
-				fleet.add(newJet);
-				
-				System.out.println(fleet);
+				fleet.add(newJet);				
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		return fleet;
 	}
+
+	public List<Jet> getFleet() {
+		return fleet;
+	}
+
+	public void setFleet(List<Jet> fleet) {
+		this.fleet = fleet;
+	}
+	
 
 }

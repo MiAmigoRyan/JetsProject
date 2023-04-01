@@ -6,11 +6,10 @@ import com.skilldistillery.jets.entities.AirField;
 import com.skilldistillery.jets.entities.Jet;
 
 public class JetsApplication {
-
+	
+	private AirField af = new AirField();
+		
 	private Scanner sc = new Scanner(System.in);
-
-	// is this correct? should Jet be an array list?
-	private Jet[] fleet = new Jet[10];
 
 	public static void main(String[] args) {
 		JetsApplication ja = new JetsApplication();
@@ -18,20 +17,16 @@ public class JetsApplication {
 	}
 
 	public void launch() {
-//		AirField af = new AirField();
-//
-//		af.readFromFile();
-
 		menu();
 	}
 
 	public void menu() {
 		boolean running = true;
 		while (running) {
-			System.out.println("CHOOSE AN OPTION AND PRESS \" ENTER \"" + "\n 1. List Fleet " + "\n 2. Fly All Jets" + "\n 3. View Fastest Jet"
-					+ "\n 4. View Jet With Longest Range" + "\n 5. Load All Cargo Jets" + "\n 6. Dogfight!"
-					+ "\n 7. Add a Jet to the Fleet" + "\n 8. Remove a Jet from the Fleet" + "\n 9. Quit" 
-					);
+			System.out.println("CHOOSE AN OPTION AND PRESS \" ENTER \"" + "\n 1. List Fleet " + "\n 2. Fly All Jets"
+					+ "\n 3. View Fastest Jet" + "\n 4. View Jet With Longest Range" + "\n 5. Load All Cargo Jets"
+					+ "\n 6. Dogfight!" + "\n 7. Add a Jet to the Fleet" + "\n 8. Remove a Jet from the Fleet"
+					+ "\n 9. Quit");
 			int choice = sc.nextInt();
 			sc.nextLine();
 			switch (choice) {
@@ -79,46 +74,43 @@ public class JetsApplication {
 	}
 
 	public void listFleet() {
-		// sysout id, model, speed, range, and price
-		AirField af = new AirField();
-		af.readFromFile();
+		for (Jet jet : af.getFleet()) {
+			System.out.println(jet);
+		}
 	}
 
 	public void flyAll() {
-		// will call fly() an print the details of each jet
-		// prints ammount of time a jet can fly
-		// equation based on speed and range
-	}
-	
-	
-	//NEEDS TO BE TESTED***********************************
-	public void fastest() {
-		// search the list<Jets> to find fastest
-		Jet fastest = null;
-		double nextSpeed = 0;
-		for(int jet = 0; jet < fleet.length; jet++) {
-			if(fleet[jet] !=null) {
-				if(fleet[jet].getSpeed()>nextSpeed) {
-					nextSpeed = fleet[jet].getSpeed();
-					fastest = fleet[jet];
-				}
-			}
+		for (Jet jet : af.getFleet()) {
+			jet.fly();
+			
 		}
 	}
 
-	//NEEDS TO BE TESTED***********************************
-	public void longestRange() {
-		// search list<Jets> to find longest range
-		Jet longestRange = null;
-		int nextRange =0;
-		for (int jet=0; jet<fleet.length; jet++) {
-			if(fleet[jet] !=null) {
-				if(fleet[jet].getRange()>nextRange) {
-					nextRange = fleet[jet].getRange();
-					longestRange = fleet[jet];
-					}
+	public void fastest() {
+		Jet fastest = null;
+		double nextSpeed = 0;
+		for (int i = 0; i < af.getFleet().size(); i++) {
+
+			if (af.getFleet().get(i).getSpeed() > nextSpeed) {
+
+				nextSpeed = af.getFleet().get(i).getSpeed();
+				fastest = af.getFleet().get(i);
+
 			}
 		}
+		System.out.println("The fastest jet in the fleet is " + fastest);
+	}
+
+	public void longestRange() {
+		Jet longestRange = null;
+		int nextRange = 0;
+		for (int i = 0; i < af.getFleet().size(); i++) {
+			if (af.getFleet().get(i).getRange() > nextRange) {
+				nextRange = af.getFleet().get(i).getRange();
+				longestRange = af.getFleet().get(i);
+			}
+		}
+		System.out.println("The jet with the longest range in the fleet is " + longestRange);
 	}
 
 	public void loadCargoJets() {
@@ -139,6 +131,28 @@ public class JetsApplication {
 		// ask user to enter model, speed, range, and price
 		// add new jet to jets.txt and list<Jet>
 		// fleet.add
+		System.out.println("ADD A NEW JET");
+		System.out.println();
+
+		System.out.println("Enter a type of jet");
+		String type = sc.next();
+		
+		System.out.println("Enter the Model of the Jet you would like to add");
+		String model = sc.next();
+
+		System.out.println("Enter the Speed");
+		double speed = sc.nextDouble();
+
+		System.out.println("Enter the Range");
+		int range = sc.nextInt();
+	
+		System.out.println("Enter the Price");
+		long price = sc.nextLong();
+		
+		Jet newJet = new Jet(type, model, speed, range, price);
+		
+		
+		// Jet newJet = new Jet (model, speed, range, price);
 	}
 
 	public void removeJet() {

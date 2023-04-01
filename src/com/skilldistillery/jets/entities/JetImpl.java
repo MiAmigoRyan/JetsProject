@@ -7,6 +7,19 @@ public class JetImpl extends Jet {
 
 	}
 
+	
+	@Override
+	public void fly() {
+		super.fly();
+	}
+
+
+	@Override
+	public String toString() {
+		return super.toString();
+	}
+
+
 	public void load() {
 		System.out.println("Load em up!");
 	}
