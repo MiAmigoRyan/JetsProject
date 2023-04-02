@@ -25,28 +25,26 @@ public class AirField {
 			while ((aJet = bufIn.readLine()) != null) {
 
 				String[] jetDetails = aJet.split(",");
-
 				String type = jetDetails[0];  
-				
 				String model = jetDetails[1];
 				double speed = Double.parseDouble(jetDetails[2]);
 				int range = Integer.parseInt(jetDetails[3]);
 				long price = Long.parseLong(jetDetails[4]);
 
 				if (type.equals("Passenger")) {
-					newJet = new JetImpl(model, speed, range, price);
+					newJet = new JetImpl(type, model, speed, range, price);
 				}
 				if (type.equals("Fighter")) {
-					newJet = new FighterJet(model, speed, range, price);
+					newJet = new FighterJet(type, model, speed, range, price);
 				}
 				if (type.equals("UFO")) {
-					newJet = new UFO(model, speed, range, price);
+					newJet = new UFO(type, model, speed, range, price);
 				}
 				if (type.equals("Squirel Suit")) {
-					newJet = new Squirel(model, speed, range, price);
+					newJet = new Squirel(type, model, speed, range, price);
 				}
 				if (type.equals("Helicopter")) {
-					newJet = new Helicopter(model, speed, range, price);
+					newJet = new Helicopter(type, model, speed, range, price);
 				}
 				fleet.add(newJet);				
 			}

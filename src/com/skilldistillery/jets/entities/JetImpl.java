@@ -2,8 +2,8 @@ package com.skilldistillery.jets.entities;
 
 public class JetImpl extends Jet implements CargoCarrier {
 
-	public JetImpl(String model, double speed, int range, long price) {
-		super(model, speed, range, price);
+	public JetImpl(String type, String model, double speed, int range, long price) {
+		super(type, model, speed, range, price);
 
 	}
 
@@ -20,14 +20,11 @@ public class JetImpl extends Jet implements CargoCarrier {
 	}
 
 
-	public void load() {
-		System.out.println("Load em up!");
-	}
-
-
 	@Override
 	public void loadCargo() {
-		// TODO Auto-generated method stub
+		System.out.println();
+		System.out.println("ALL ABOARD!!!");
+		System.out.println();
 		
 	}
 

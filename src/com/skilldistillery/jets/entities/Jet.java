@@ -6,38 +6,38 @@ public abstract class Jet {
 	private int range;
 	private long price;
 	private int jetId;
+	private String type;
 	private static int jetCounter;
 
-	
 	public void fly() {
-		double timeFly = range / speed;
-		System.out.println("this jet can fly " + timeFly + " hours");
+		double timeFly = Math.round((range / speed) * 100);
+		System.out.println("this " + type + " can fly " + timeFly + " hours");
 		System.out.println(toString());
 		System.out.println();
 	}
 
-	public Jet(String model, double speed, int range, long price) {
+	public Jet(String type, String model, double speed, int range, long price) {
 		super();
 		this.model = model;
 		this.speed = speed;
 		this.range = range;
 		this.price = price;
-
+		this.type = type;
 		jetCounter++;
 		jetId = jetCounter;
 	}
 
 	@Override
 	public String toString() {
-		return "Jet ID " + jetId + "\n Model:" + model + "\n Speed:" + speed + "MPH " + "\n Range:" + range + " miles "
-				+ "\n Price:" + price;
+		return "Jet " + jetId + " : " + type + "\n Model: " + model + "\n Speed: " + speed + " MPH " + "\n Range: "
+				+ range + " miles " + "\n Price: " + price + "\n ------------------------------";
 	}
 
 	// Getters and Setters
 	public int getJetId() {
 		return jetId;
 	}
-	
+
 	public String getModel() {
 		return model;
 	}
@@ -68,6 +68,14 @@ public abstract class Jet {
 
 	public void setPrice(long price) {
 		this.price = price;
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
 	}
 
 }

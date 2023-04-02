@@ -2,8 +2,8 @@ package com.skilldistillery.jets.entities;
 
 public class Helicopter extends Jet implements CombatReady, CargoCarrier{
 
-	public Helicopter(String model, double speed, int range, long price) {
-		super(model, speed, range, price);
+	public Helicopter(String type, String model, double speed, int range, long price) {
+		super(type, model, speed, range, price);
 	}
 	
 	@Override
@@ -16,19 +16,20 @@ public class Helicopter extends Jet implements CombatReady, CargoCarrier{
 		return super.toString();
 	}
 
-	public void hover() {
-		System.out.println("wop-wop-wop-wop");
-	}
 
 	@Override
 	public void loadCargo() {
-		// TODO Auto-generated method stub
+		System.out.println();
+		System.out.println("GET IN ZE CHOPPER!!!");
+		System.out.println();
 		
 	}
 
 	@Override
 	public void fight() {
-		// TODO Auto-generated method stub
+		System.out.println();
+		System.out.println("bip bip bip bip");
+		System.out.println();
 		
 	}
 	

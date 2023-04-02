@@ -2,8 +2,8 @@ package com.skilldistillery.jets.entities;
 
 public class Squirel extends Jet implements CombatReady {
 
-	public Squirel(String model, double speed, int range, long price) {
-		super(model, speed, range, price);
+	public Squirel(String type, String model, double speed, int range, long price) {
+		super(type, model, speed, range, price);
 	}
 
 	@Override

@@ -4,11 +4,13 @@ import java.util.Scanner;
 
 import com.skilldistillery.jets.entities.AirField;
 import com.skilldistillery.jets.entities.CargoCarrier;
-import com.skilldistillery.jets.entities.CargoPlane;
 import com.skilldistillery.jets.entities.CombatReady;
 import com.skilldistillery.jets.entities.FighterJet;
+import com.skilldistillery.jets.entities.Helicopter;
 import com.skilldistillery.jets.entities.Jet;
 import com.skilldistillery.jets.entities.JetImpl;
+import com.skilldistillery.jets.entities.Squirel;
+import com.skilldistillery.jets.entities.UFO;
 
 public class JetsApplication {
 
@@ -56,7 +58,6 @@ public class JetsApplication {
 				loadCargoJets();
 				break;
 			case 6:
-				// Dogfight!
 				dogfight();
 				break;
 			case 7:
@@ -103,7 +104,7 @@ public class JetsApplication {
 
 			}
 		}
-		System.out.println("The fastest jet in the fleet is " + fastest);
+		System.out.println("The fastest jet in the fleet is \n" + fastest);
 	}
 
 	public void longestRange() {
@@ -115,59 +116,97 @@ public class JetsApplication {
 				longestRange = af.getFleet().get(i);
 			}
 		}
-		System.out.println("The jet with the longest range in the fleet is " + longestRange);
+		System.out.println("The jet with the longest range in the fleet is \n" + longestRange);
 	}
 
 	public void loadCargoJets() {
-		// present option specific to CargoCarrier Interface
-		// find all implementations of cargoCarrier
-		// call loadCargo() on each
-		// instance of
 		for (Jet jet : af.getFleet()) {
-			if (jet instanceof CargoPlane) {
+			if (jet instanceof CargoCarrier) {
 				((CargoCarrier) jet).loadCargo();
 			}
 		}
-
 	}
 
 	public void dogfight() {
 		for (Jet jet : af.getFleet()) {
-			if (jet instanceof FighterJet) {
+			if (jet instanceof CombatReady) {
 				((CombatReady) jet).fight();
 			}
 		}
+		
 	}
 
 	public void addJet() {
-		// print current list : listFleet();
-		// can be a JetImpl (passenger)
-		// STRETCH GOAL : Sub Menu initate to choose type of jet (Cargo, Combat, Impl)
+	    System.out.println("ADD A NEW JET");
+	    System.out.println();
 
-		System.out.println("ADD A NEW JET");
-		System.out.println();
+	    System.out.println("Choose a type of jet:");
+	    System.out.println("\t1. Fighter Jet");
+	    System.out.println("\t2. Passenger Jet");
+	    System.out.println("\t3. Cargo Jet");
+	    System.out.println("\t4. UFO");
+	    System.out.println("\t5. Squirrel Suit");
+	    System.out.println("\t6. Helicopter");
+	    System.out.println();
 
-		System.out.println("Enter a type of jet");
-		String type = sc.next();
-//			switch
-//			case
+	    String type = "";
+	    int choice = sc.nextInt();
+	    switch (choice) {
+	        case 1:
+	            type = "Fighter Jet";
+	            break;
+	        case 2:
+	            type = "Passenger Jet";
+	            break;
+	        case 3:
+	            type = "UFO";
+	            break;
+	        case 4:
+	            type = "Squirrel Suit";
+	            break;
+	        case 5:
+	            type = "Helicopter";
+	            break;
+	        default:
+	            System.out.println("Invalid choice!");
+	            return;
+	    }
 
-		System.out.println("Enter the Model of the Jet you would like to add");
-		String model = sc.next();
+	    System.out.println("Enter the Model of the Jet you would like to add");
+	    String model = sc.next();
 
-		System.out.println("Enter the Speed");
-		double speed = sc.nextDouble();
+	    System.out.println("Enter the Speed");
+	    double speed = sc.nextDouble();
 
-		System.out.println("Enter the Range");
-		int range = sc.nextInt();
+	    System.out.println("Enter the Range");
+	    int range = sc.nextInt();
 
-		System.out.println("Enter the Price");
-		long price = sc.nextLong();
+	    System.out.println("Enter the Price");
+	    long price = sc.nextLong();
 
-		Jet newJet = new JetImpl(model, speed, range, price);
-
-		af.getFleet().add(newJet);
-
+	    Jet newJet = null;
+	    switch (choice) {
+	        case 1:
+	            newJet = new FighterJet(type, model, speed, range, price);
+	            break;
+	        case 2:
+	            newJet = new JetImpl(type, model, speed, range, price);
+	            break;
+	        case 3:
+	            newJet = new UFO(type, model, speed, range, price);
+	            break;
+	        case 4:
+	            newJet = new Squirel(type, model, speed, range, price);
+	            break;
+	        case 5:
+	            newJet = new Helicopter(type, model, speed, range, price);
+	            break;
+	        default:
+	            System.out.println("Invalid choice!");
+	            return;
+	    }
+	    
+	    af.getFleet().add(newJet);
 	}
 
 	public void removeJet() {
