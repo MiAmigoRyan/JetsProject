@@ -18,7 +18,7 @@ public class Squirel extends Jet implements CombatReady {
 
 	@Override
 	public void fight() {
-		System.out.println();
+		System.out.println(model + " " +type);
 		System.out.println("AHHHAHHAHHAHHHHHHH");
 		System.out.println();
 	}

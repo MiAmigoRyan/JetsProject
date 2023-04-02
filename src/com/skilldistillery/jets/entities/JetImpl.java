@@ -7,25 +7,22 @@ public class JetImpl extends Jet implements CargoCarrier {
 
 	}
 
-	
 	@Override
 	public void fly() {
 		super.fly();
 	}
-
 
 	@Override
 	public String toString() {
 		return super.toString();
 	}
 
-
 	@Override
 	public void loadCargo() {
-		System.out.println();
+		System.out.println(model + " " +type);
 		System.out.println("ALL ABOARD!!!");
 		System.out.println();
-		
+
 	}
 
 }

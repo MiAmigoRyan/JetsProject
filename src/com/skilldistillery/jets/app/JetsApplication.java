@@ -31,7 +31,7 @@ public class JetsApplication {
 		boolean running = true;
 		while (running) {
 			System.out.println("CHOOSE AN OPTION AND PRESS \" ENTER \"" + "\n 1. List Fleet " + "\n 2. Fly All Jets"
-					+ "\n 3. View Fastest Jet" + "\n 4. View Jet With Longest Range" + "\n 5. Load All Cargo Jets"
+					+ "\n 3. View Fastest Jet" + "\n 4. View Jet With Longest Range" + "\n 5. Load All Cargo Carrier Jets"
 					+ "\n 6. Dogfight!" + "\n 7. Add a Jet to the Fleet" + "\n 8. Remove a Jet from the Fleet"
 					+ "\n 9. Quit");
 			int choice = sc.nextInt();
@@ -143,10 +143,9 @@ public class JetsApplication {
 	    System.out.println("Choose a type of jet:");
 	    System.out.println("\t1. Fighter Jet");
 	    System.out.println("\t2. Passenger Jet");
-	    System.out.println("\t3. Cargo Jet");
-	    System.out.println("\t4. UFO");
-	    System.out.println("\t5. Squirrel Suit");
-	    System.out.println("\t6. Helicopter");
+	    System.out.println("\t3. UFO");
+	    System.out.println("\t4. Squirrel Suit");
+	    System.out.println("\t5. Helicopter");
 	    System.out.println();
 
 	    String type = "";
