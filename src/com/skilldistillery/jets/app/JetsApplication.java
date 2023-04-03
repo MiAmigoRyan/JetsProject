@@ -15,9 +15,8 @@ import com.skilldistillery.jets.entities.UFO;
 public class JetsApplication {
 
 	private AirField af = new AirField();
-
 	private Scanner sc = new Scanner(System.in);
-
+	
 	public static void main(String[] args) {
 		JetsApplication ja = new JetsApplication();
 		ja.launch();
@@ -38,34 +37,27 @@ public class JetsApplication {
 			sc.nextLine();
 			switch (choice) {
 			case 1:
-				// list fleet
 				listFleet();
 				break;
 			case 2:
-				// Fly all jets
 				flyAll();
 				break;
 			case 3:
-				// View Fastest jet
 				fastest();
 				break;
 			case 4:
-				// View jet with longest range
 				longestRange();
 				break;
 			case 5:
-				// Load all Cargo Jets
 				loadCargoJets();
 				break;
 			case 6:
 				dogfight();
 				break;
 			case 7:
-				// add a jet to the fleet
 				addJet();
 				break;
 			case 8:
-				// remove a jet from the fleet
 				removeJet();
 				break;
 			case 9:
@@ -88,7 +80,6 @@ public class JetsApplication {
 	public void flyAll() {
 		for (Jet jet : af.getFleet()) {
 			jet.fly();
-
 		}
 	}
 
@@ -98,10 +89,8 @@ public class JetsApplication {
 		for (int i = 0; i < af.getFleet().size(); i++) {
 
 			if (af.getFleet().get(i).getSpeed() > nextSpeed) {
-
 				nextSpeed = af.getFleet().get(i).getSpeed();
 				fastest = af.getFleet().get(i);
-
 			}
 		}
 		System.out.println("The fastest jet in the fleet is \n" + fastest);
@@ -133,13 +122,11 @@ public class JetsApplication {
 				((CombatReady) jet).fight();
 			}
 		}
-		
 	}
 
 	public void addJet() {
 	    System.out.println("ADD A NEW JET");
 	    System.out.println();
-
 	    System.out.println("Choose a type of jet:");
 	    System.out.println("\t1. Fighter Jet");
 	    System.out.println("\t2. Passenger Jet");
@@ -147,7 +134,6 @@ public class JetsApplication {
 	    System.out.println("\t4. Squirrel Suit");
 	    System.out.println("\t5. Helicopter");
 	    System.out.println();
-
 	    String type = "";
 	    int choice = sc.nextInt();
 	    switch (choice) {
@@ -170,19 +156,14 @@ public class JetsApplication {
 	            System.out.println("Invalid choice!");
 	            return;
 	    }
-
 	    System.out.println("Enter the Model of the Jet you would like to add");
 	    String model = sc.next();
-
 	    System.out.println("Enter the Speed");
 	    double speed = sc.nextDouble();
-
 	    System.out.println("Enter the Range");
 	    int range = sc.nextInt();
-
 	    System.out.println("Enter the Price");
 	    long price = sc.nextLong();
-
 	    Jet newJet = null;
 	    switch (choice) {
 	        case 1:
@@ -203,33 +184,52 @@ public class JetsApplication {
 	        default:
 	            System.out.println("Invalid choice!");
 	            return;
-	    }
-	    
+	    }	    
 	    af.getFleet().add(newJet);
+	    
+	    System.out.println("Your new Jet : " + "\n" + newJet);
+	    System.out.println();
+	    System.out.println("Would you like to see an updated fleet?");
+	    System.out.println("Press 1 for Yes \n Press 2 for No");
+	    int choice2 = sc.nextInt();
+	    switch (choice2) {
+	    case 1:
+	    	System.out.println("Updated Fleet :");
+	    	System.out.println();
+	    	listFleet();
+	    	break;
+	    case 2:
+	    	System.out.println("Thanks for adding to our fleet!");
+	    	break;
+	    default:
+	    	 System.out.println("Invalid choice!");
+	            return;
+	    }
 	}
 
 	public void removeJet() {
-		// print current list as a submenu;
-		// prompt user to choose a jet to delete by number
 		listFleet();
-
 		System.out.println("Enter the number of the jet you want to remove:");
-
 		int jetIndex = sc.nextInt();
-
-		// Remove the jet from the fleet if it exists
 		if (jetIndex >= 1 && jetIndex <= af.getFleet().size()) {
-
 			Jet removedJet = af.getFleet().remove(jetIndex - 1);
 			System.out.println("Jet: " + removedJet.getJetId() + " " + removedJet.getModel()
 					+ " has been removed from the fleet.");
-//bonus: print updated list of fleet
-//	        System.out.println("Would you like to see an updated list of the fleet? Enter Y or N ");	
-//	        String anwsr = sc.next();
-//	        	continue code
-
+			 int choice2 = sc.nextInt();
+			    switch (choice2) {
+			    case 1:
+			    	System.out.println("Updated Fleet :");
+			    	System.out.println();
+			    	listFleet();
+			    	break;
+			    case 2:
+			    	System.out.println("Thanks for adding to our fleet!");
+			    	break;
+			    default:
+			    	 System.out.println("Invalid choice!");
+			            return;
+			    }
 		} else {
-
 			System.out.println("Invalid jet number. Returning to Main Menu.");
 		}
 	}
